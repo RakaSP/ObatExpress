@@ -280,9 +280,19 @@ class AdminService {
       customerId,
       itemsId: [itemId1, itemId2, itemId3]
     }
+    
+    result2 = [item1, item2, item3]
+    item = {
+      itemName,
+      qty,
+      price
+    }
     */
     const query = `QUERY`;
     const result = await this._pool.execute(query, [deliveryId]);
+
+    const query2 = `QUERY WHERE ID = ORDERID`;
+    const result2 = await this._pool.execute(query2, [orderId]);
     if (!result.rowCount) {
       throw new NotFoundError(
         "Failed fetching Order List, Order List is not found"
