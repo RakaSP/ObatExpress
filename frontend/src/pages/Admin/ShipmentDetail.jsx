@@ -16,6 +16,7 @@ import {
   customers,
 } from '../../constants/index'
 import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
+import MapPlaceholder from './components/MapPlaceholer'
 const ShipmentDetail = () => {
   let { id } = useParams()
   const numericId = parseInt(id, 10)
@@ -33,13 +34,13 @@ const ShipmentDetail = () => {
     <div>
       <div className="p-10px px-10">
         <h4 className={`${styles.heading4} mt-7 !text-[#474554] mb-2`}>
-          Shipment ID #{id}
+          Delivery ID #{id}
         </h4>
         <div className="flex justify-between w-full">
           <div className="flex-1 w-full pr-10">
             <div className="flex flex-row">
               <div className="flex-1">
-                <h5 className={`${styles.heading5}`}>Shipment Info</h5>
+                <h5 className={`${styles.heading5}`}>Delivery Info</h5>
                 <div className="flex flex-row justify-between">
                   <div className="flex-1">
                     <div>
@@ -137,7 +138,8 @@ const ShipmentDetail = () => {
             <hr className="my-5" />
             <div className="h-[400px] w-full flex items-center justify-center ring-2 ring-[#a0a0a0]">
               {/* <MapContainer /> */}
-              <p className="text-[#5e5e5e] font-poppins text-2xl">No Route</p>
+              <MapPlaceholder />
+              {/* <p className="text-[#5e5e5e] font-poppins text-2xl">No Route</p> */}
             </div>
           </div>
           <div>
@@ -151,11 +153,8 @@ const ShipmentDetail = () => {
                       <FontAwesomeIcon icon={faCircleCheck} /> Goods are loaded
                     </div>
                     <div>
-                      <FontAwesomeIcon icon={faCircleUser} /> Packer Name
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faLocationCrosshairs} /> Alamat
-                      Gudang
+                      <FontAwesomeIcon icon={faCircleUser} /> Raka Satya
+                      Prasasta
                     </div>
                     <div>
                       <FontAwesomeIcon icon={faClock} /> 10 April 2024
@@ -169,15 +168,16 @@ const ShipmentDetail = () => {
                     <div>
                       <FontAwesomeIcon icon={faCircleCheck} /> Picked up
                     </div>
-                    <div>
-                      <FontAwesomeIcon icon={faCircleUser} /> Driver Name
+                    <div className="truncate">
+                      <FontAwesomeIcon icon={faCircleUser} /> Santana Yuda
+                      Pradata
+                    </div>
+                    <div className="truncate">
+                      <FontAwesomeIcon icon={faLocationCrosshairs} /> Gudang
+                      Farmasi dan Alat Kesehatan
                     </div>
                     <div>
-                      <FontAwesomeIcon icon={faLocationCrosshairs} /> Alamat
-                      Gudang
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faClock} /> 10 April 2024
+                      <FontAwesomeIcon icon={faClock} /> 12 April 2024
                     </div>
                   </div>
                 </li>
@@ -220,7 +220,7 @@ const ShipmentDetail = () => {
                             {order.address}
                           </div>
                           <div>
-                            <FontAwesomeIcon icon={faClock} /> {order.ETA}
+                            <FontAwesomeIcon icon={faClock} /> ETA: {order.ETA}
                           </div>
                         </div>
                       </li>
@@ -236,17 +236,14 @@ const ShipmentDetail = () => {
                   <div>
                     <h5 className={`${styles.heading5}`}>Warehouse</h5>
                     <div>
-                      <FontAwesomeIcon icon={faCircleCheck} /> Delivered
+                      <FontAwesomeIcon icon={faCircleCheck} /> On Route
+                    </div>
+                    <div className="truncate">
+                      <FontAwesomeIcon icon={faLocationCrosshairs} /> Gudang
+                      Farmasi dan Alat Kesehatan
                     </div>
                     <div>
-                      <FontAwesomeIcon icon={faCircleUser} /> Driver Name
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faLocationCrosshairs} /> Alamat
-                      Gudang
-                    </div>
-                    <div>
-                      <FontAwesomeIcon icon={faClock} /> 10 April 2024
+                      <FontAwesomeIcon icon={faClock} /> N/A
                     </div>
                   </div>
                 </li>

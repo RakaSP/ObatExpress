@@ -23,7 +23,7 @@ const dashboard = () => {
           ))}
         </div>
         <DeliveryReport
-          title="Shipment List"
+          title="Recent Deliveries"
           deliveryStatus={deliveryStatus}
           shipments={shipments}
           employees={employees}

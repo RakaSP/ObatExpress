@@ -14,6 +14,7 @@ import {
   faLocationArrow,
   faPhone,
   faIdCard,
+  faUserTie,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { orders, items } from '../../constants'
@@ -110,7 +111,7 @@ const OrderDetail = () => {
                           1x <span>{item.price} (IDR)</span>
                         </p>
                       </div>
-                      <div>{item.price * 2} (IDR)</div>
+                      <div>{item.price} (IDR)</div>
                     </div>
                   </div>
                   <hr className="border-[#967Df9] border-[1px]" />
@@ -128,7 +129,7 @@ const OrderDetail = () => {
                 </p>
                 <hr className="border-[#967DF9] border-[1px] my-4" />
                 <p className="flex justify-between">
-                  Total <span>$900.00</span>
+                  Total <span>396447 (IDR)</span>
                 </p>
               </div>
             </div>
@@ -138,8 +139,8 @@ const OrderDetail = () => {
               <h5 className={`${styles.heading5}`}>Order Details</h5>
               <hr className="border-[#967DF9] border-[1px]" />
               <div className="my-2 truncate">
-                <FontAwesomeIcon icon={faUser} />
-                <span>Raka Satya Prasasta</span>
+                <FontAwesomeIcon icon={faUserTie} />
+                <span>Santana Yuda Pradata</span>
               </div>
               <div className="my-2 truncate">
                 <FontAwesomeIcon icon={faTruck} />
@@ -156,20 +157,22 @@ const OrderDetail = () => {
               <hr className="border-[#967DF9] border-[1px]" />
               <div className="my-2 truncate">
                 <FontAwesomeIcon icon={faUser} />
-                <span>Raka Satya Prasasta</span>
+                <span>Lenore Hinrich</span>
               </div>
               <div className="my-2 truncate">
                 <FontAwesomeIcon icon={faEnvelope} />
-                <span>rakasatria85@gmail.com</span>
+                <span>LenoreHinrich@gmail.com</span>
               </div>
               <div className="my-2 truncate">
                 <FontAwesomeIcon icon={faPhone} />
-                <span>+62 812-7113-9285</span>
+                <span>+62 712 805 0876</span>
               </div>
               <div className="my-2 truncate">
                 <FontAwesomeIcon icon={faLocationArrow} />
                 <span>
-                  Jl. Krebet no.8 sendang sari pajangan bantul yogyakarta
+                  Jujur Agung Rejeki. PT, JL. Gajah Mada 22, Yogyakarta, 55112,
+                  Purwokinanti, Pakualaman, Yogyakarta City, Special Region of
+                  Yogyakarta 55151
                 </span>
               </div>
             </div>

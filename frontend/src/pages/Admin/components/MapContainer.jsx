@@ -36,7 +36,7 @@ const MapContainer = () => {
     })
   }, [])
 
-  return <div id="map" className="h-[400px] w-full]"></div>
+  return <div id="map" className="h-[400px] w-full"></div>
 }
 
 export default MapContainer
