@@ -19,6 +19,7 @@ const AdminNavbar = ({ location }) => {
       console.error('Error rebuild DB: ', e)
     }
   }
+
   const generateOrders = async () => {
     try {
       const response = await axios.post(
@@ -109,7 +110,7 @@ const AdminNavbar = ({ location }) => {
   }
 
   return (
-    <div className="min-h-[80px] flex items-center w-full border-[#D6F4FF] border-b-2 bg-[#FFFFFF]">
+    <div className="min-h-[80px] flex items-center w-full bg-[#FFFFFF] shadow-md">
       <div className="flex justify-between items-center w-full px-10">
         <div className="flex flex-row items-center justify-between">
           {navText.map((item, index) => (

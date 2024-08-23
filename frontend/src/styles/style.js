@@ -16,9 +16,9 @@ const styles = {
   heading5: 'font-poppins font-semibold text-[16px] text-black mb-2',
   paragraph: 'font-poppins font-normal text-black text-[18px] leading-[30.8px]',
   sidebar_item:
-    'font-poppins font-semibold text-[#3B3B3B] hover:text-[#8083FF] text-[18px] w-[100%] block py-[10px] px-[30px] text-left',
+    'font-poppins font-semibold text-text_primary hover:text-highlight text-[18px] w-[100%] block py-[10px] px-[30px] text-left',
   sidebar_item_sublink:
-    'font-poppins font-semibold text-[#5E5E5E] hover:text-[#8083FF] text-[16px] w-[100%] block py-[8px]',
+    'font-poppins font-semibold text-text_primary hover:text-highlight text-[16px] w-[100%] block py-[8px]',
   flexCenter: 'flex justify-center items-center',
   flexStart: 'flex justify-center items-start',
 
@@ -29,7 +29,7 @@ const styles = {
   marginX: 'sm:mx-16 mx-6',
   marginY: 'sm:my-16 my-6',
 
-  fullScreen: 'h-[100vh] w-[100vw]',
+  fullScreen: 'min-h-[100vh] h-full w-[100vw] bg-[#F7FBFC]',
 
   inputForm:
     'pb-3 outline-none bg-transparent border-b-[1px] border-black font-medium text-[18px]',
@@ -41,7 +41,7 @@ const styles = {
   infoTitle: 'text-[#8b8b8b]',
   infoValue: 'font-semibold font-poppins text-[18px]',
 
-  employeeDetailLabel: 'font-semibold text-[#5e5e5e] text-[14px]',
+  employeeDetailLabel: 'font-semibold text-text_primary text-[14px]',
   employeeDetailSpan: 'font-semibold font-poppins',
   shipmentFinished: `after:content-[''] after:absolute after:left-[-2px] after:top-[0%] after:z-0 after:h-[50%] after:w-0 after:border-l-2 after:border-indigo-500`,
 }

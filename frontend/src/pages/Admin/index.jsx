@@ -6,7 +6,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 const Admin = () => {
   let location = useLocation()
   return (
-    <div className="ml-[260px] bg-[#FFFFFF] h-full">
+    <div className="ml-[260px] h-full">
       <AdminNavbar location={location} />
       <Outlet />
     </div>

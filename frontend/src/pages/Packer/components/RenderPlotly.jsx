@@ -359,8 +359,7 @@ const RenderPlotly = () => {
       'flex',
       'flex-row',
       'p-[10px]',
-      'mb-[20px]',
-      'shadow-lg'
+      'mb-[20px]'
     )
 
     const leftContainer = document.createElement('div')
@@ -405,14 +404,11 @@ const RenderPlotly = () => {
   }
 
   return (
-    <div>
-      <header>
-        <h4 className={`${styles.heading4} mt-7 !text-[#474554]`}>
-          Shipment #{id}
-        </h4>
-      </header>
-      <div id="container" ref={containerElem} className="p-[20px]"></div>
-    </div>
+    <div
+      id="container"
+      ref={containerElem}
+      className="p-[20px] bg-bg_card border border-gray-200 rounded-lg shadow-lg"
+    ></div>
   )
 }
 

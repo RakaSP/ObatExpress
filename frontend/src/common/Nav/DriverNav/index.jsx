@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faHouse,
-  faIdCard,
   faAngleRight,
   faAngleDown,
   faBoxesPacking,
@@ -22,12 +21,6 @@ const AdminNav = () => {
       title: 'Dashboard',
       link: '/driver',
       icon: faHouse,
-      subLinks: [],
-    },
-    {
-      title: 'Route',
-      link: '/driver/route/1',
-      icon: faIdCard,
       subLinks: [],
     },
     {
@@ -82,7 +75,7 @@ const AdminNav = () => {
                       exact="true"
                       className={`${
                         styles.sidebar_item_sublink
-                      } ml-[45px] pl-2 border-l-2 border-[#5E5E5E] hover:border-[#8083FF] ${
+                      } ml-[45px] pl-2 border-l-2 border-text_primary hover:border-highlight ${
                         index === 0 ? 'mt-2' : ''
                       } ${index === item.subLinks.length - 1 ? 'mb-2' : ''}`}
                       activeclassname="active"

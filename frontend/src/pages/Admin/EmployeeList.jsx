@@ -1,49 +1,31 @@
-import React, { useState, useRef } from 'react'
-import {
-  faUserTie,
-  faBoxesPacking,
-  faPersonChalkboard,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from '../../styles/style'
-import { employees, jobRoles, workTypes } from '../../constants'
-import pfp from '../../assets/ProfilePhotos/pfp.png'
+import { employees } from '../../constants'
 import '../../styles/index.scss'
-const EmployeeList = () => {
-  const employeeCounts = [
-    { id: 1, title: 'Total', icon: faUserTie, count: 51 },
-    {
-      id: 2,
-      title: 'Admin',
-      icon: faUserTie,
-      count: 3,
-    },
-    {
-      id: 3,
-      title: 'Driver',
-      icon: faPersonChalkboard,
-      count: 30,
-    },
-    {
-      id: 4,
-      title: 'Packer',
-      icon: faBoxesPacking,
-      count: 18,
-    },
-  ]
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
 
+const jobRoles = [
+  {
+    id: 1,
+    role: 'Admin',
+  },
+  {
+    id: 2,
+    role: 'Driver',
+  },
+  {
+    id: 3,
+    role: 'Packer',
+  },
+]
+const EmployeeList = () => {
   const [activeRole, setActiveRole] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
-  const [activeDetail, setActiveDetail] = useState(null)
   const [filteredEmployeesData, setFilteredEmployeesData] = useState([])
-  const [searchValue, setSearchValue] = useState(null)
-  const itemsPerPage = 20
-  const lastItemIndex = itemsPerPage * currentPage
-  const firstItemIndex = lastItemIndex - itemsPerPage
-  let currentEmployeesData = useRef([])
-  const filterEmployeesData = (role) => {
-    return employees.filter((item) => item.job_id === jobRoles.id)
-  }
+  const [searchValue, setSearchValue] = useState('')
+  const itemsPerPage = 16
+
   const handleListClick = (index) => {
     setActiveRole(index)
     firstPage()
@@ -52,86 +34,158 @@ const EmployeeList = () => {
   const firstPage = () => {
     setCurrentPage(1)
   }
-  const nextPage = () => {
-    setCurrentPage(currentPage + 1)
-  }
 
-  const prevPage = () => {
-    setCurrentPage(currentPage - 1)
-  }
-  const lastPage = () => {
-    setCurrentPage(lastPageNumber)
-  }
   const handleInputChange = (event) => {
     setSearchValue(event.target.value)
   }
 
-  if (searchValue) {
-    const foundEmployee = employees.find(
-      (employee) => employee.id === parseInt(searchValue, 10)
-    )
-    currentEmployeesData.current = foundEmployee ? [foundEmployee] : []
-  } else {
-    currentEmployeesData.current = filteredEmployeesData.slice(
-      firstItemIndex,
-      lastItemIndex
-    )
-  }
+  useEffect(() => {
+    let filteredData = employees
 
-  if (activeRole === 0) {
-    setFilteredEmployeesData(employees)
-    setActiveRole(3)
-  } else if (activeRole === 1 || activeRole === 2) {
-    const role = jobRoles.find((role) => role.id === activeRole)
-    const filteredData = filterEmployeesData(role)
+    if (searchValue !== '') {
+      filteredData = filteredData.filter((employee) =>
+        employee.name.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    }
+
     setFilteredEmployeesData(filteredData)
-    setActiveRole(3)
-  }
+  }, [searchValue])
 
-  const lastPageNumber = Math.ceil(filteredEmployeesData.length / 20)
+  useEffect(() => {
+    let filteredData = employees
+    if (activeRole === 1) {
+      filteredData = employees.filter((item) => item.role === 'Admin')
+    } else if (activeRole === 2) {
+      filteredData = employees.filter((item) => item.role === 'Driver')
+    } else if (activeRole === 3) {
+      filteredData = employees.filter((item) => item.role === 'Packer')
+    }
+    setFilteredEmployeesData(filteredData)
+  }, [activeRole])
 
   const handleSubmit = (event) => {
     event.preventDefault()
   }
 
+  const importAll = (r) => {
+    let images = {}
+    r.keys().map((item) => {
+      images[item.replace('./', '')] = r(item)
+    })
+    return images
+  }
+
+  const images = importAll(
+    require.context('../../assets/ProfilePhotos', false, /\.(png|jpe?g|svg)$/)
+  )
+
+  const getEmployeeImage = (filename) => {
+    return images[filename]
+  }
+
+  const renderCardRow = () => {
+    let indents = []
+    const paginatedEmployees = filteredEmployeesData.slice(
+      (currentPage - 1) * itemsPerPage,
+      currentPage * itemsPerPage
+    )
+
+    for (let i = 0; i < Math.ceil(paginatedEmployees.length / 4); i++) {
+      let currentEmployees = paginatedEmployees.slice(i * 4, (i + 1) * 4)
+
+      indents.push(
+        <div
+          className="flex flex-row justify-start mb-4 gap-4 font-poppins"
+          key={i}
+        >
+          {currentEmployees.map((employee) => (
+            <div
+              className="w-[24%] relative py-4 px-3 rounded-md border-2 border-gray-200 shadow-md bg-bg_card"
+              key={employee.id}
+            >
+              <div
+                className={`absolute top-2 right-4 items-center py-1 px-2 rounded-md ${
+                  employee.status === 'Idle'
+                    ? 'bg-slate-500 text-slate-500'
+                    : employee.status === 'Available' ||
+                      employee.status === 'Active'
+                    ? 'bg-green-500 text-green-500'
+                    : employee.status === 'Assigned'
+                    ? 'bg-blue-500 text-blue-500'
+                    : employee.status === 'En Route' ||
+                      employee.status === 'Loading'
+                    ? 'bg-yellow-500 text-yellow-500'
+                    : 'bg-red-500 text-red-500'
+                } bg-opacity-25`}
+              >
+                <span className="text-xs font-[500]">{employee.status}</span>
+              </div>
+              <div className="w-full flex flex-col justify-center items-center mb-2">
+                <div className="relative w-[64px] h-[64px]">
+                  <img
+                    src={getEmployeeImage(employee.pfp)}
+                    alt={employee.name}
+                    className="w-full h-full object-cover rounded-full border-2"
+                  />
+                </div>
+                <div className="flex items-center flex-col">
+                  <h3 className="text-lg font-semibold text-text_primary">
+                    {employee.name}
+                  </h3>
+                  <p className="text-base font-medium text-text_dimPrimary">
+                    {employee.role}
+                  </p>
+                </div>
+              </div>
+              <div className="text-sm text-text_primary bg-highlight bg-opacity-30 px-4 py-2 rounded-md">
+                <p className="text-sm font-[500] my-1">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                  <a
+                    href={`mailto:${employee.email}`}
+                    className="hover:text-highlight ml-2"
+                  >
+                    {employee.email}
+                  </a>
+                </p>
+                <p className="text-sm font-[500] my-1">
+                  <FontAwesomeIcon icon={faPhone} />
+                  <a
+                    href={`tel:${employee.phone}`}
+                    className="hover:text-highlight ml-2"
+                  >
+                    {employee.phone}
+                  </a>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+    return indents
+  }
+
   return (
-    <div className="relative p-[10px] px-10">
-      <h3>Employee List</h3>
-      <div className="flex flex-row justify-between w-full">
-        {employeeCounts.map((item, index) => (
-          <div
-            key={index}
-            className="mr-10 bg-[#F2ECFF] flex-1 rounded-md h-[150px] flex items-center flex-row relative px-10"
-          >
-            <div className="text-[28px]">
-              <FontAwesomeIcon icon={item.icon} />
-            </div>
-            <div className="ml-10">
-              <h3 className={`${styles.heading42}`}>{item.title}</h3>
-              <p className={`${styles.paragraph} !text-[#474554]`}>
-                {item.count}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-5">
-        <h3 className={`${styles.heading4} !text-[#474554]`}>Employees</h3>
-        <div className="flex flex-row items-center justify-between mt-5">
+    <div className="relative py-[10px] px-10">
+      <h4 className={`${styles.heading4} mt-7 text-text_primary`}>
+        {filteredEmployeesData.length} Employees
+      </h4>
+      <div className="mt-5 bg-bg_card rounded-xl pt-8 px-4 pb-2 shadow-lg">
+        <div className="flex flex-row items-center justify-between mb-4">
           <ul className="flex flex-row">
             {[{ id: 0, role: 'All Employees' }, ...jobRoles].map(
               (item, index) => (
-                <li
+                <div
                   key={index}
                   className={`${
-                    index === activeRole
-                      ? 'border-b-[#8083FF] text-[#8083FF]'
-                      : 'border-b-[#6B7280] text-[#5e5e5e] '
-                  } font-medium px-7 border-b-2 hover:cursor-pointer`}
+                    activeRole === index
+                      ? 'text-white'
+                      : 'bg-opacity-20 hover:bg-opacity-100 text-highlight hover:text-[#fff]'
+                  } bg-highlight rounded-md mx-2 p-2 text-[14px] w-[120px] text-center font-semibold cursor-pointer`}
                   onClick={() => handleListClick(index)}
                 >
                   {item.role}
-                </li>
+                </div>
               )
             )}
           </ul>
@@ -140,163 +194,29 @@ const EmployeeList = () => {
               type="text"
               value={searchValue}
               onChange={handleInputChange}
-              placeholder="Search Employee ID"
+              placeholder="Search Employee Name"
               className="font-medium border-2 rounded-full px-4 py-1 outline-none"
             />
           </form>
         </div>
-        <div className="bg-[#f2ecff] m-4 rounded-lg">
-          <table className="w-full">
-            <thead className="bg-[#ACA7CB]">
-              <tr>
-                <th className="pr-3">ID</th>
-                <th className="text-left">Name</th>
-                <th className="text-left">Email</th>
-                <th className="text-left">Role</th>
-                <th className="text-left">Type</th>
-              </tr>
-            </thead>
-            <tbody className="">
-              {currentEmployeesData.current.map((employee) => {
-                const roleInfo = jobRoles.find(
-                  (role) => role.id === employee.job_id
-                )
-                const employmentTypeInfo = workTypes.find(
-                  (workType) => workType.id === employee.employement_id
-                )
-
-                return (
-                  <React.Fragment key={employee.id}>
-                    <tr
-                      className="h-[40px]"
-                      onClick={() =>
-                        setActiveDetail(
-                          activeDetail === employee.id ? null : employee.id
-                        )
-                      }
-                    >
-                      <th className="pr-3">{employee.id}</th>
-                      <th className="text-left">{employee.name}</th>
-                      <th className="text-left">{employee.email}</th>
-                      <th className="text-left">{roleInfo.role}</th>
-                      <th className="text-left">{employmentTypeInfo.type}</th>
-                    </tr>
-                    <tr
-                      className={`bg-[#FFF5FF] ${
-                        employee.id === activeDetail ? 'expand-row' : 'hidden'
-                      }`}
-                    >
-                      <td colSpan="5">
-                        <div
-                          className={`${
-                            employee.id === activeDetail ? '' : 'hidden'
-                          } flex flex-row w-full justify-between items-center p-4 border-l border-r border-x-[#FFE8F7] `}
-                        >
-                          <div className="h-[120px]">
-                            <img src={pfp} alt="" className="w-full h-full" />
-                          </div>
-                          <div className="flex flex-col w-1/5">
-                            <div className=" flex flex-col">
-                              <label
-                                className={`${styles.employeeDetailLabel}`}
-                              >
-                                Full Name
-                              </label>
-                              <span className={`${styles.employeeDetailSpan}`}>
-                                {employee.name}
-                              </span>
-                            </div>
-                            <div className=" flex flex-col mt-4">
-                              <label
-                                className={`${styles.employeeDetailLabel}`}
-                              >
-                                Email Address
-                              </label>
-                              <span className={`${styles.employeeDetailSpan}`}>
-                                {employee.email}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex flex-col w-1/5">
-                            <div className=" flex flex-col">
-                              <label
-                                className={`${styles.employeeDetailLabel}`}
-                              >
-                                Job Roles
-                              </label>
-                              <span className={`${styles.employeeDetailSpan}`}>
-                                {roleInfo.role}
-                              </span>
-                            </div>
-                            <div className="flex flex-col mt-4">
-                              <label
-                                className={`${styles.employeeDetailLabel}`}
-                              >
-                                Employment Type
-                              </label>
-                              <span className={`${styles.employeeDetailSpan}`}>
-                                {employmentTypeInfo.type}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex flex-col w-2/5">
-                            <div className="flex flex-row justify-between">
-                              <div className="flex flex-col">
-                                <label
-                                  className={`${styles.employeeDetailLabel}`}
-                                >
-                                  Gender
-                                </label>
-                                <span
-                                  className={`${styles.employeeDetailSpan}`}
-                                >
-                                  {employee.gender}
-                                </span>
-                              </div>
-                              <div className="flex flex-col">
-                                <label
-                                  className={`${styles.employeeDetailLabel}`}
-                                >
-                                  Age
-                                </label>
-                                <span
-                                  className={`${styles.employeeDetailSpan}`}
-                                >
-                                  {employee.age}
-                                </span>
-                              </div>
-                              <div className="flex flex-col">
-                                <label
-                                  className={`${styles.employeeDetailLabel}`}
-                                >
-                                  Phone Number
-                                </label>
-                                <span
-                                  className={`${styles.employeeDetailSpan}`}
-                                >
-                                  {employee.phone}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex flex-col mt-4">
-                              <label
-                                className={`${styles.employeeDetailLabel}`}
-                              >
-                                Address
-                              </label>
-                              <span className={`${styles.employeeDetailSpan}`}>
-                                {employee.address}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </React.Fragment>
-                )
-              })}
-            </tbody>
-          </table>
+        <div className="m-4">{renderCardRow()}</div>
+        <div className="flex justify-center mt-4">
+          {Array.from(
+            { length: Math.ceil(filteredEmployeesData.length / itemsPerPage) },
+            (_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`mx-1 px-3 py-1 border-2 rounded ${
+                  currentPage === index + 1
+                    ? 'bg-highlight text-white'
+                    : 'bg-white text-highlight'
+                }`}
+              >
+                {index + 1}
+              </button>
+            )
+          )}
         </div>
       </div>
     </div>

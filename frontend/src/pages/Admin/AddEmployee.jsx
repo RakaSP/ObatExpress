@@ -19,10 +19,10 @@ const AddEmployee = () => {
   }
 
   return (
-    <div className="p-[10px] px-10">
-      <h3 className={`${styles.heading4} !text-[32px] mt-7 !text-[#474554]`}>
+    <div className="py-[10px] px-10">
+      <h4 className={`${styles.heading4} !text-[32px] mt-7 !text-[#474554]`}>
         Add Employee
-      </h3>
+      </h4>
       <h2 className={`${styles.heading4} !text-[#5e5e5e] mt-7`}>
         Choose Employee Role
       </h2>

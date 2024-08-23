@@ -7,9 +7,9 @@ import { deliveryStatus, shipments, employees } from '../../constants'
 const dashboard = () => {
   return (
     <div>
-      <div className="p-[10px] px-10">
-        <h4 className={`${styles.heading4} mt-7 !text-[#474554]`}>
-          Shipment Data
+      <div className="py-[10px] px-10">
+        <h4 className={`${styles.heading4} mt-7 text-text_primary`}>
+          Dashboard
         </h4>
         <div className="flex justify-between">
           {dashboard_stats.map((stat, index) => (

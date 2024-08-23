@@ -4,15 +4,15 @@ import styles from '../../../styles/style'
 
 const StatCard = ({ title, value, valueTitle, change, icon, style }) => (
   <div
-    className={`${style} bg-[#F2ECFF] flex-1 rounded-md h-[150px] flex justify-between flex-col relative p-3 pt-5 mt-4`}
+    className={`${style} bg-bg_card shadow-md flex-1 rounded-md h-[150px] flex justify-between flex-col relative p-3 pt-5 mt-4`}
   >
     <FontAwesomeIcon
       className="absolute top-0 right-0 text-[28px] m-2"
       icon={icon}
     />
     <div>
-      <p className={`${styles.paragraph} !text-[#ACA7CB]`}>{title}</p>
-      <h4 className={`${styles.heading4} !text-[#474554]`}>
+      <p className={`${styles.paragraph} text-text_dimPrimary`}>{title}</p>
+      <h4 className={`${styles.heading4} text-text_primary`}>
         {value} {valueTitle}
       </h4>
     </div>
@@ -25,7 +25,7 @@ const StatCard = ({ title, value, valueTitle, change, icon, style }) => (
         {change > 0 ? '+' : ''}
         {change}%
       </p>{' '}
-      <p className="text-[#5e5e5e] text-black inline">vs Past Month</p>
+      <p className="text-text_primary inline">vs Past Month</p>
     </span>
   </div>
 )

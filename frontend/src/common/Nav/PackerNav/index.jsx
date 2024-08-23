@@ -1,13 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faWarehouse,
-  faBoxesPacking,
-  faTruck,
-} from '@fortawesome/free-solid-svg-icons'
+import { faBoxesPacking, faTruck } from '@fortawesome/free-solid-svg-icons'
 import styles from '../../../styles/style'
-import { containerList } from '../../../constants/pack'
 
 const PackerNav = () => {
   const [activeNavItemIndex, setactiveNavItemIndex] = useState(null)
@@ -54,15 +49,15 @@ const PackerNav = () => {
 
   const links = [
     {
-      title: 'Cardboard',
-      link: '/packer/1',
-      icon: faBoxesPacking,
-      idList: null,
-    },
-    {
       title: 'Vehicle',
       link: '/packer/vehicle',
       icon: faTruck,
+      idList: null,
+    },
+    {
+      title: 'Cardboard',
+      link: '/packer/1',
+      icon: faBoxesPacking,
       idList: null,
     },
   ]

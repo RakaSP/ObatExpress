@@ -1,84 +1,161 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { vehicles } from '../../constants'
-const Vehicles = () => {
-  const vehiclesCount = vehicles.length
+import styles from '../../styles/style'
+import '../../styles/index.scss'
 
-  const renderCardRow = () => {
-    var indents = []
-    for (var i = 0; i < Math.ceil(vehiclesCount / 4); i++) {
-      let currentVehicles = vehicles.slice(i * 4, (i + 1) * 4)
-      indents.push(
-        <div className="flex flex-row justify-between mb-2" key={i}>
-          {currentVehicles.map((vehicle) => (
-            <div
-              className="w-[24%] py-4 px-3 bg-[#FAF8ff] rounded-md"
-              key={vehicle.id}
-            >
-              <div className="flex flex-row justify-between">
-                <div className="font-poppins font-[500]">
-                  Vehicle
-                  <span className="font-semibold"> #{vehicle.id}</span>
-                </div>
-                <div className="font-poppins font-semibold text-[green]">
-                  {vehicle.status}
-                </div>
-              </div>
-              <div className="flex flex-row justify-between">
-                <div className="flex-[40%] flex flex-col">
-                  <div>
-                    <div className="text-[#5e5e5e] text-[14px]">
-                      Shipment ID
-                    </div>
-                    <div className="font-poppins font-semibold">1</div>
-                  </div>
-                  <div>
-                    <div className="text-[#5e5e5e] text-[14px]">
-                      Weight (KG)
-                    </div>
-                    <div className="font-poppins font-semibold">
-                      {vehicle.weight}/{vehicle.capacity}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-[#5e5e5e] text-[14px]">Capacity</div>
-                    <div className="font-poppins font-semibold text-[red]">
-                      {((vehicle.weight / vehicle.capacity) * 100).toFixed(1)}%
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-[60%] flex items-center justify-center">
-                  <img src={vehicle.imgUrl} alt="" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )
-    }
-    return indents
+const Vehicles = () => {
+  const [activeStatus, setActiveStatus] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [filteredVehiclesData, setFilteredVehiclesData] = useState([])
+  const [searchValue, setSearchValue] = useState('')
+  const itemsPerPage = 16
+
+  const handleListClick = (index) => {
+    setActiveStatus(index)
+    setCurrentPage(1) // Reset to the first page when changing filters
   }
 
-  return (
-    <div>
-      <div className="py-[20px] px-10">
-        <div className="flex flex-row items-center">
-          <h4 className="font-poppins font-semibold text-[24px]">Vehicles</h4>
-          <div className="flex flex-row ml-2">
-            <div className="bg-[#E3E0F3] hover:bg-[#8083FF] rounded-md mx-2 p-2 text-[14px] text-[#8685EF] w-[100px] text-center font-semibold hover:text-[#fff] cursor-pointer">
-              Idle
+  const handleInputChange = (event) => {
+    setSearchValue(event.target.value)
+  }
+
+  useEffect(() => {
+    let filteredData = vehicles
+
+    if (searchValue !== '') {
+      filteredData = filteredData.filter((vehicle) =>
+        vehicle.id.toString().includes(searchValue)
+      )
+    }
+
+    setFilteredVehiclesData(filteredData)
+  }, [searchValue])
+
+  useEffect(() => {
+    if (activeStatus === 0) {
+      setFilteredVehiclesData(vehicles)
+    } else {
+      const statusMapping = {
+        1: 'Idle',
+        2: 'Ready',
+        3: 'On Delivery',
+        4: 'Maintenance',
+      }
+      const filteredData = vehicles.filter(
+        (item) => item.status === statusMapping[activeStatus]
+      )
+      setFilteredVehiclesData(filteredData)
+    }
+  }, [activeStatus])
+
+  const renderCardRow = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    const currentVehicles = filteredVehiclesData.slice(startIndex, endIndex)
+
+    return (
+      <div className="flex flex-row flex-wrap justify-start mb-4 gap-4">
+        {currentVehicles.map((vehicle) => (
+          <div
+            className="w-[24%] relative py-4 px-3 rounded-md border-2 border-gray-200 shadow-md bg-bg_card"
+            key={vehicle.id}
+          >
+            <div className="flex flex-row justify-between mb-1 font-poppins">
+              <div className=" font-[500]">
+                Vehicle
+                <span className="font-semibold"> #{vehicle.id}</span>
+              </div>
+              <div className=" font-semibold text-[green]">
+                {vehicle.status}
+              </div>
             </div>
-            <div className="bg-[#E3E0F3] hover:bg-[#8083FF] rounded-md mx-2 p-2 text-[14px] text-[#8685EF] w-[100px] text-center font-semibold hover:text-[#fff] cursor-pointer">
-              Ready
-            </div>
-            <div className="bg-[#E3E0F3] hover:bg-[#8083FF] rounded-md mx-2 p-2 text-[14px] text-[#8685EF] w-[100px] text-center font-semibold hover:text-[#fff] cursor-pointer">
-              On Delivery
-            </div>
-            <div className="bg-[#E3E0F3] hover:bg-[#8083FF] rounded-md mx-2 p-2 text-[14px] text-[#8685EF] w-[100px] text-center font-semibold hover:text-[#fff] cursor-pointer">
-              Maintenance
+            <div className="flex flex-row justify-between">
+              <div className="basis-2/5 flex flex-col">
+                <div>
+                  <div className="text-text_primary text-sm">Shipment ID</div>
+                  <div className="font-semibold">1</div>
+                </div>
+                <div>
+                  <div className="text-text_primary text-sm">Weight (KG)</div>
+                  <div className="font-semibold">
+                    {vehicle.weight}/{vehicle.capacity}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-text_primary text-sm">Capacity</div>
+                  <div className="font-semibold text-[red]">
+                    {((vehicle.weight / vehicle.capacity) * 100).toFixed(1)}%
+                  </div>
+                </div>
+              </div>
+              <div className="basis-3/5 flex items-center justify-center">
+                <img
+                  src={vehicle.imgUrl}
+                  alt={vehicle.imgUrl}
+                  className="h-[100px] object-fit"
+                />
+              </div>
             </div>
           </div>
+        ))}
+      </div>
+    )
+  }
+
+  const totalPages = Math.ceil(filteredVehiclesData.length / itemsPerPage)
+
+  return (
+    <div className="relative py-[10px] px-10">
+      <h4 className={`${styles.heading4} mt-7 text-text_primary`}>
+        {filteredVehiclesData.length} Vehicles
+      </h4>
+      <div className="mt-5 bg-bg_card rounded-xl pt-8 px-4 pb-2 shadow-lg">
+        <div className="flex flex-row items-center justify-between mb-4">
+          <ul className="flex flex-row">
+            {[
+              { id: 0, status: 'All Vehicles' },
+              { id: 1, status: 'Idle' },
+              { id: 2, status: 'Ready' },
+              { id: 3, status: 'On Delivery' },
+              { id: 4, status: 'Maintenance' },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-highlight bg-opacity-20 hover:bg-opacity-100 rounded-md mx-2 p-2 text-sm text-highlight w-[120px] text-center font-semibold hover:text-[#fff] cursor-pointer"
+                onClick={() => handleListClick(index)}
+              >
+                {item.status}
+              </div>
+            ))}
+          </ul>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="text"
+              value={searchValue}
+              onChange={handleInputChange}
+              placeholder="Search Vehicle ID"
+              className="font-medium border-2 rounded-full px-4 py-1 outline-none"
+            />
+          </form>
         </div>
-        <div className="mt-10">{renderCardRow()}</div>
+        <div className="m-4">{renderCardRow()}</div>
+        <div className="flex justify-center mt-4">
+          <ul className="flex">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <li
+                key={index + 1}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`mx-1 cursor-pointer py-1 px-2 rounded-full text-sm font-semibold ${
+                  currentPage === index + 1
+                    ? 'bg-highlight text-white'
+                    : 'bg-gray-200 text-highlight hover:bg-highlight hover:text-white'
+                }`}
+              >
+                {index + 1}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   )

@@ -28,18 +28,9 @@ const AdminNav = () => {
     },
     {
       title: 'Employees',
-      link: '#',
+      link: '/admin/employees',
       icon: faIdCard,
-      subLinks: [
-        {
-          title: 'Employee List',
-          link: '/admin/employee/list',
-        },
-        {
-          title: 'Add Employee',
-          link: '/admin/employee/add',
-        },
-      ],
+      subLinks: [],
     },
     {
       title: 'Vehicles',
@@ -49,13 +40,13 @@ const AdminNav = () => {
     },
     {
       title: 'Shipments',
-      link: '/admin/shipment/1',
+      link: '/admin/shipment',
       icon: faBoxesPacking,
       subLinks: [],
     },
     {
       title: 'Orders',
-      link: 'admin/order/1',
+      link: 'admin/order',
       icon: faShoppingCart,
       subLinks: [],
     },
@@ -105,7 +96,7 @@ const AdminNav = () => {
                       exact="true"
                       className={`${
                         styles.sidebar_item_sublink
-                      } ml-[45px] pl-2 border-l-2 border-[#5E5E5E] hover:border-[#8083FF] ${
+                      } ml-[45px] pl-2 border-l-2 border-text_primary hover:border-highlight ${
                         index === 0 ? 'mt-2' : ''
                       } ${index === item.subLinks.length - 1 ? 'mb-2' : ''}`}
                       activeclassname="active"

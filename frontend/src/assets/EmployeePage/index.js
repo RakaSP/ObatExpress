@@ -7,6 +7,8 @@ import mtLogoT from './mt-logo-t.png'
 /* Vehicles Page Assets */
 import scooter2d from './scooter.png'
 import truck2d from './2d-truck.png'
+import truck3d from './truck3d.png'
+
 export {
   gmapsMarker,
   mtLogoT,
@@ -15,4 +17,5 @@ export {
   whatsapp,
   scooter2d,
   truck2d,
+  truck3d,
 }

@@ -5,7 +5,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 const Driver = () => {
   let location = useLocation()
   return (
-    <div className="ml-[260px] bg-[#fff] h-full">
+    <div className="ml-[260px] h-full">
       <Outlet />
     </div>
   )
