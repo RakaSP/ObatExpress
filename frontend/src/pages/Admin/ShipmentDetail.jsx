@@ -36,7 +36,7 @@ const ShipmentDetail = () => {
     <div>
       <div className="p-10px px-10">
         <h4 className={`${styles.heading4} mt-7 text-text_primary mb-2`}>
-          Delivery ID #{id}
+          Delivery<span className="text-sm opacity-60">/Detail - {id}</span>
         </h4>
         <div className="flex justify-between w-full">
           <div className="flex-1 w-full pr-10">

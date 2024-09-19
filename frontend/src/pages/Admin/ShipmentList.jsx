@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { employees, shipments2 } from '../../constants'
+import { shipments2 } from '../../constants'
 import { NavLink } from 'react-router-dom'
 import styles from '../../styles/style'
 
@@ -60,7 +60,7 @@ const ShipmentList = () => {
   return (
     <div className="p-[10px] px-10">
       <h4 className={`${styles.heading4} mt-7 text-text_primary`}>
-        Shipment List
+        Delivery List
       </h4>
       <div className="bg-bg_card shadow-xl rounded-lg pt-6 pb-4 px-4 mt-5 border-gray-200">
         <table className="min-w-full border border-gray-200 rounded-lg shadow-md text-text_primary ">
@@ -83,7 +83,7 @@ const ShipmentList = () => {
               >
                 <td className="py-2 px-4">
                   <NavLink
-                    className="underline cursor-pointer hover:text-highlight"
+                    className="underline cursor-pointer text-highlight hover:text-[#00BFFF]"
                     to={`${shipment.id}`}
                   >
                     {shipment.id}

@@ -3,7 +3,7 @@ import '../../styles/index.scss'
 import { StatCard, DeliveryReport } from './components'
 import styles from '../../styles/style'
 import { dashboard_stats } from '../../constants'
-import { deliveryStatus, shipments, employees } from '../../constants'
+import { shipments2 } from '../../constants'
 const dashboard = () => {
   return (
     <div>
@@ -22,12 +22,7 @@ const dashboard = () => {
             />
           ))}
         </div>
-        <DeliveryReport
-          title="Recent Deliveries"
-          deliveryStatus={deliveryStatus}
-          shipments={shipments}
-          employees={employees}
-        />
+        <DeliveryReport title="Recent Deliveries" shipments={shipments2} />
       </div>
     </div>
   )

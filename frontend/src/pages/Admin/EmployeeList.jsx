@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../../styles/style'
 import { employees } from '../../constants'
 import '../../styles/index.scss'

@@ -12,6 +12,7 @@ import ShipmentList from './pages/Admin/ShipmentList'
 import ShipmentDetail from './pages/Admin/ShipmentDetail'
 import OrderDetail from './pages/Admin/OrderDetail'
 import Vehicles from './pages/Admin/Vehicles'
+import Troubles from './pages/Admin/Troubles'
 
 import Driver from './pages/Driver'
 import DriverDashboard from './pages/Driver/Dashboard'
@@ -39,7 +40,7 @@ function App() {
             <Route path="shipment/:id" element={<ShipmentDetail />} />
             <Route path="order" element={<OrderList />} />
             <Route path="order/:id" element={<OrderDetail />} />
-            <Route path="trouble"></Route>
+            <Route path="trouble" element={<Troubles />}></Route>
           </Route>
           <Route path="/driver" element={<Driver />}>
             <Route path="" element={<DriverDashboard />}></Route>

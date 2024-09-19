@@ -35,11 +35,12 @@ const Vehicles = () => {
     if (activeStatus === 0) {
       setFilteredVehiclesData(vehicles)
     } else {
+      console.log(activeStatus)
       const statusMapping = {
-        1: 'Idle',
-        2: 'Ready',
-        3: 'On Delivery',
-        4: 'Maintenance',
+        1: 'available',
+        2: 'ready',
+        3: 'In Transit',
+        4: 'maintenance',
       }
       const filteredData = vehicles.filter(
         (item) => item.status === statusMapping[activeStatus]
@@ -81,12 +82,12 @@ const Vehicles = () => {
                     {vehicle.weight}/{vehicle.capacity}
                   </div>
                 </div>
-                <div>
+                {/* <div>
                   <div className="text-text_primary text-sm">Capacity</div>
                   <div className="font-semibold text-[red]">
                     {((vehicle.weight / vehicle.capacity) * 100).toFixed(1)}%
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="basis-3/5 flex items-center justify-center">
                 <img
@@ -114,9 +115,9 @@ const Vehicles = () => {
           <ul className="flex flex-row">
             {[
               { id: 0, status: 'All Vehicles' },
-              { id: 1, status: 'Idle' },
+              { id: 1, status: 'Available' },
               { id: 2, status: 'Ready' },
-              { id: 3, status: 'On Delivery' },
+              { id: 3, status: 'In Transit' },
               { id: 4, status: 'Maintenance' },
             ].map((item, index) => (
               <div
@@ -145,10 +146,10 @@ const Vehicles = () => {
               <li
                 key={index + 1}
                 onClick={() => setCurrentPage(index + 1)}
-                className={`mx-1 cursor-pointer py-1 px-2 rounded-full text-sm font-semibold ${
+                className={`mx-1 cursor-pointer w-[32px] h-[32px] flex items-center justify-center rounded text-sm font-semibold ${
                   currentPage === index + 1
                     ? 'bg-highlight text-white'
-                    : 'bg-gray-200 text-highlight hover:bg-highlight hover:text-white'
+                    : 'border-gray-200 border text-highlight hover:bg-highlight hover:text-white'
                 }`}
               >
                 {index + 1}

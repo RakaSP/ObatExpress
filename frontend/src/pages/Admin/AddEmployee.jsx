@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { faCircleDot } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from '../../styles/style'
 import { jobRoles, workTypes } from '../../constants'
 import RoleCard from './components/RoleCard'

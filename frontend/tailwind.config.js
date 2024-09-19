@@ -13,6 +13,7 @@ module.exports = {
         text_dimPrimary: '#3F72AF',
         text_light: '#F9F7F7',
         highlight: '#0094FF',
+        highlight_spot: '#40608F',
         border_primary: '#6B7280',
         bg_card: '#fff',
         table_header: '#3F72AF',
