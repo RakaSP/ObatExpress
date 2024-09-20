@@ -4,7 +4,6 @@
 // Note: fetch data containerSize, packData based on pathId
 import React, { useEffect, useRef } from 'react'
 import { containerSize, packData } from '../../../constants/pack'
-import styles from '../../../styles/style'
 import { useParams } from 'react-router-dom'
 const RenderPlotly = () => {
   const containerElem = useRef(null)
@@ -235,7 +234,6 @@ const RenderPlotly = () => {
       inputNumber.value = lastItemIdx
       inputNumber.classList.add('form-control', 'mr-2')
 
-      //console.log(productCodeList);
       const table = document.createElement('table')
       table.classList.add('table', 'table-striped', 'table-bordered')
 
@@ -302,8 +300,6 @@ const RenderPlotly = () => {
       form.addEventListener('submit', (event) => {
         event.preventDefault()
         let inputValue = parseInt(inputNumber.value)
-        // console.log(inputValue)
-        // console.log(inputNumber.value)
         if (!isNaN(inputValue)) {
           if (inputValue < 0) inputValue = 0
           else if (inputValue > itemPosList.length - 1)

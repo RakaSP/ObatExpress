@@ -29,7 +29,6 @@ const OrderList = () => {
   const indexOfLastRow = currentPage * rowsPerPage
   const indexOfFirstRow = indexOfLastRow - rowsPerPage
   const currentOrders = orders.slice(indexOfFirstRow, indexOfLastRow)
-  console.log(currentOrders)
   const totalPages = Math.ceil(orders.length / rowsPerPage)
 
   const handleClick = (event) => {

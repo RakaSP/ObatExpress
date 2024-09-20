@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBell,
   faExclamationTriangle,
+  faImage,
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 
@@ -150,17 +151,50 @@ const AdminNavbar = ({ location }) => {
               <FontAwesomeIcon icon={faBell} />
             </div>
             {notification && (
-              <div className="absolute w-[300px] left-[-260px] border-2 rounded-md z-[1] bg-white mt-4">
-                <h4 className="!text-black px-4 pt-2">Notifications</h4>
-                <hr className="w-full border-2 my-2" />
-                <div className="px-4 pb-2">
-                  <p className="font-poppins text-[16px]">
-                    Emergency Order has been added by Jason Satham
-                  </p>
-                  <p className="text-[#5e5e5e] text-[14px] font-poppins mt-2">
-                    2023-09-14
-                  </p>
-                </div>
+              <div className="absolute w-[360px] right-0 border-2 rounded-md z-[1] bg-white mt-4 drop-shadow-sm">
+                <header className="text-text_primary font-semibold text-xl px-4 pt-2">
+                  Notifications
+                </header>
+                <ul className="w-full mt-2">
+                  <li className="border-t-[#BBB8B8] border-t w-full px-2 py-2 flex flex-row gap-4 bg-bg_card hover:bg-[#EEE] cursor-pointer transition-colors duration-300">
+                    <aside>
+                      <figure className="rounded-full border border-black h-8 w-8 flex items-center justify-center">
+                        <img src="" alt="" />
+                        <FontAwesomeIcon
+                          icon={faImage}
+                          className="fallback-icon"
+                        />
+                      </figure>
+                    </aside>
+                    <div>
+                      <p className="text-text_primary text-[15px] font-roboto">
+                        Emergency Order from{' '}
+                        <span className="font-semibold">William Clark</span>{' '}
+                        Received! Please review and process immediately
+                      </p>
+                      <p className="text-sm text-text_dimPrimary">1 hour ago</p>
+                    </div>
+                  </li>
+                  <li className="border-t-[#BBB8B8] border-t w-full px-2 py-2 flex flex-row gap-4 bg-bg_card hover:bg-[#EEE] cursor-pointer transition-colors duration-300">
+                    <aside>
+                      <figure className="rounded-full border border-black h-8 w-8 flex items-center justify-center">
+                        <img src="" alt="" />
+                        <FontAwesomeIcon
+                          icon={faImage}
+                          className="fallback-icon"
+                        />
+                      </figure>
+                    </aside>
+                    <div>
+                      <p className="text-text_primary text-[15px] font-roboto">
+                        Emergency Order from{' '}
+                        <span className="font-semibold">William Clark</span>{' '}
+                        Received! Please review and process immediately
+                      </p>
+                      <p className="text-sm text-text_dimPrimary">1 hour ago</p>
+                    </div>
+                  </li>
+                </ul>
               </div>
             )}
           </div>

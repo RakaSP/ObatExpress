@@ -7,7 +7,7 @@ import {
   faCircleCheck,
 } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import MapContainer from './components/MapContainer'
+// import MapContainer from './components/MapContainer'
 import { shipments2 } from '../../constants/index'
 import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
 import MapPlaceholder from './components/MapPlaceholer'

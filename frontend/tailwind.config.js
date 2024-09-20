@@ -34,6 +34,7 @@ module.exports = {
       },*/
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
+        roboto: ['Roboto', 'sans-setif'],
       },
       flex: {
         '40%': '0 0 40%',

@@ -14,7 +14,7 @@ const MapContainer = () => {
       const directionsService = new google.maps.DirectionsService()
       const directionsRenderer = new google.maps.DirectionsRenderer()
       const map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -7.791997, lng: 110.38798 }, // Centered around Bantul
+        center: { lat: -7.791997, lng: 110.38798 },
         zoom: 12,
       })
 

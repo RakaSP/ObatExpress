@@ -6,7 +6,7 @@ import '../styles/index.scss'
 const EmployeeLayout = () => {
   return (
     <>
-      <div className={`${styles.fullScreen}`}>
+      <div className={`${styles.fullScreen} relative`}>
         <Sidebar />
         <Outlet />
       </div>

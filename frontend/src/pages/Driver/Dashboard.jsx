@@ -1,54 +1,48 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
-import { truck3d } from '../../assets/EmployeePage'
+import { truck3d, scooter3d } from '../../assets/EmployeePage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faUser,
-  faPhone,
-  faMoneyBill,
-  faM,
-} from '@fortawesome/free-solid-svg-icons'
-import { shipments2, orders } from '../../constants'
-
-const score = 49
-const maxScore = 50
-const segments = [15, 10, 10, 10, 5, 50]
-const randomIndex = Math.floor(Math.random() * shipments2.length) + 1
-const shipment = shipments2[randomIndex]
-
-let tempScore = score
-const data = segments.map((limit, index) => {
-  if (index < 5) {
-    if (tempScore > limit) {
-      tempScore -= limit
-      return limit
-    } else {
-      return tempScore
-    }
-  } else {
-    return maxScore - score
-  }
-})
-const driverMileage = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000
-
-function generateRandomPlate() {
-  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const randomLetter = () =>
-    letters.charAt(Math.floor(Math.random() * letters.length))
-
-  const region = randomLetter() + randomLetter()
-  const numbers = Math.floor(1000 + Math.random() * 9000)
-  const suffix = randomLetter() + randomLetter()
-
-  return `${region} ${numbers} ${suffix}`
-}
-
-const mappedData = data.map((value) => ({ value }))
-const rating = (Math.random() * (5 - 4) + 4).toFixed(2)
-const orderIndex = Math.floor(Math.random() * shipment.orders.length) + 1
-console.log(mappedData)
+import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
+import { orders } from '../../constants'
+// const randomIndex = Math.floor(Math.random() * shipments2.length) + 1
+// const shipment = shipments2[randomIndex]
 
 const Dashboard = () => {
+  const shipment = useOutletContext()
+  const score = 49
+  const maxScore = 50
+  const segments = [15, 10, 10, 10, 5, 50]
+
+  let tempScore = score
+  const data = segments.map((limit, index) => {
+    if (index < 5) {
+      if (tempScore > limit) {
+        tempScore -= limit
+        return limit
+      } else {
+        return tempScore
+      }
+    } else {
+      return maxScore - score
+    }
+  })
+  const driverMileage = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000
+
+  function generateRandomPlate() {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const randomLetter = () =>
+      letters.charAt(Math.floor(Math.random() * letters.length))
+
+    const region = randomLetter() + randomLetter()
+    const numbers = Math.floor(1000 + Math.random() * 9000)
+    const suffix = randomLetter() + randomLetter()
+
+    return `${region} ${numbers} ${suffix}`
+  }
+
+  const rating = (Math.random() * (5 - 4) + 4).toFixed(2)
+  const orderIndex = Math.floor(Math.random() * shipment.orders.length) + 1
   return (
     <div className="h-full min-h-[100vh] w-full flex flex-row">
       <div className="p-[10px] px-10 w-[40%] h-full">
@@ -64,7 +58,7 @@ const Dashboard = () => {
           <div className="h-[128px] flex flex-col justify-center">
             <ReactStars
               count={5}
-              value={rating}
+              value={Number(rating)}
               size={24}
               isHalf={true}
               edit={false}
@@ -106,8 +100,8 @@ const Dashboard = () => {
           <div className="w-full flex flex-row items-stretch mb-4 h-full">
             <div className="flex flex-row mr-4 pt-2 w-[80px] justify-between relative">
               <p className="text-text_primary text-xs opacity-60 font-semibold">
-                <p>09:00</p>
-                <p className="mt-1 whitespace-nowrap">(0.5 km)</p>
+                <span className="block">09:00</span>
+                <span className="block mt-1 whitespace-nowrap">(0.5 km)</span>
               </p>
               <div className="w-4 h-4 bg-highlight rounded-full flex justify-center">
                 <div className="absolute w-1 h-[calc(100%+20px)] bg-highlight z-10"></div>
@@ -131,11 +125,14 @@ const Dashboard = () => {
             const orderID = order.id
             const orderDetail = orders.find((order) => order.id === orderID)
             return (
-              <div className="w-full flex flex-row items-stretch mb-4">
+              <div
+                key={order.id}
+                className="w-full flex flex-row items-stretch mb-4"
+              >
                 <div className="flex flex-row mr-4 pt-2 w-[80px] justify-between relative">
                   <p className="text-text_primary text-xs opacity-60 font-semibold">
-                    <p>10:00</p>
-                    <p className="mt-1 whitespace-nowrap">(4 km)</p>
+                    <span className="block">10:00</span>
+                    <span className="block mt-1 whitespace-nowrap">(4 km)</span>
                   </p>
                   <div className="w-4 h-4 bg-highlight rounded-full flex justify-center">
                     <div className="absolute w-1 h-[calc(100%+20px)] bg-highlight z-10 bg-opacity-40"></div>
@@ -182,8 +179,8 @@ const Dashboard = () => {
                     </div>
                     <div className="flex-1">
                       <ul className="list-decimal">
-                        {orderDetail.items.map((item) => (
-                          <li>{item.name}</li>
+                        {orderDetail.items.map((item, index) => (
+                          <li key={`${item.name}-${index}`}>{item.name}</li>
                         ))}
                       </ul>
                     </div>
@@ -196,8 +193,8 @@ const Dashboard = () => {
           <div className="w-full flex flex-row items-stretch mb-4">
             <div className="flex flex-row mr-4 pt-2 w-[80px] justify-between relative">
               <p className="text-text_primary text-xs opacity-60 font-semibold">
-                <p>13:00</p>
-                <p className="mt-1 whitespace-nowrap">(12 km)</p>
+                <span className="block">13:00</span>
+                <span className="block mt-1 whitespace-nowrap">(12 km)</span>
               </p>
               <div className="w-4 h-4 bg-highlight rounded-full flex justify-center"></div>
             </div>

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../../styles/style'
 import { Link } from 'react-router-dom'
+import DriverProfileComponent from '../../Driver/components/ProfileComponent'
+
 const DeliveryReport = ({ shipments }) => {
   const formatDateTime = (dateString) => {
     const date = new Date(dateString)
@@ -15,6 +17,13 @@ const DeliveryReport = ({ shipments }) => {
   const sortedShipments = shipments.slice().sort((a, b) => {
     return new Date(b.departureDate) - new Date(a.departureDate)
   })
+
+  const [active, setActive] = useState(false)
+  const [data, setData] = useState(null)
+
+  const handleClose = () => {
+    setData(null)
+  }
 
   return (
     <div className="mb-4 mt-8 bg-bg_card pt-4 px-4 pb-2 rounded-xl shadow-lg">
@@ -45,9 +54,16 @@ const DeliveryReport = ({ shipments }) => {
                     </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <a href className="underline hover:text-highlight">
+                    <p
+                      href
+                      className="underline hover:text-highlight inline"
+                      onClick={() => {
+                        setActive(true)
+                        setData(item.driver)
+                      }}
+                    >
                       {item.driver.name}
-                    </a>
+                    </p>
                   </td>
                   <td className="py-2 px-4">
                     {formatDateTime(item.departureDate)}
@@ -82,6 +98,15 @@ const DeliveryReport = ({ shipments }) => {
           </tbody>
         </table>
       </div>
+      {data && (
+        <DriverProfileComponent
+          style={`${
+            !active && 'hidden'
+          } fixed w-full h-full flex items-center justify-center bg-black bg-opacity-30 top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-[9999]`}
+          data={data}
+          onClose={handleClose}
+        />
+      )}
     </div>
   )
 }

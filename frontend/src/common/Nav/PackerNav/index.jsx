@@ -25,7 +25,6 @@ const PackerNav = () => {
   useEffect(() => {
     const loadOptions = () => {
       let idList = []
-      console.log(location.pathname)
       if (location.pathname.includes('/packer/warehouse'))
         idList = links[0].idList
       idSelect.innerHTML = ''

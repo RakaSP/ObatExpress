@@ -35,7 +35,6 @@ const Vehicles = () => {
     if (activeStatus === 0) {
       setFilteredVehiclesData(vehicles)
     } else {
-      console.log(activeStatus)
       const statusMapping = {
         1: 'available',
         2: 'ready',

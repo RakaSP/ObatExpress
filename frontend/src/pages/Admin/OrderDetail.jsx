@@ -94,7 +94,6 @@ const OrderDetail = () => {
           <h4 className={`${styles.heading42}`}>Item List</h4>
           {order.items.map((item) => {
             const subTotal = item.price * item.qty
-            console.log(subTotal)
             totalPrice += subTotal
             return (
               <React.Fragment key={item}>

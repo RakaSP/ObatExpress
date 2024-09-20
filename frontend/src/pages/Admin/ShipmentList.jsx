@@ -83,7 +83,7 @@ const ShipmentList = () => {
               >
                 <td className="py-2 px-4">
                   <NavLink
-                    className="underline cursor-pointer text-highlight hover:text-[#00BFFF]"
+                    className="underline cursor-pointer hover:text-highlight"
                     to={`${shipment.id}`}
                   >
                     {shipment.id}

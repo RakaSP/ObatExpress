@@ -49,7 +49,6 @@ const Route = () => {
               let customer = customers.find(
                 (customer) => customer.id === order.customer_id
               )
-              console.log(order, customer)
               return (
                 <React.Fragment key={order.id}>
                   <li className="border-l-[2px] border-indigo-500 p-[10px] relative m-0 before:content-['\2022'] before:font-[#000] before:text-[36px] before:absolute before:left-[-8px] before:translate-y-[-70%]">
