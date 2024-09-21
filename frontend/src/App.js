@@ -20,6 +20,7 @@ import DriverReport from './pages/Driver/Report'
 import DriverProfile from './pages/Driver/Profile'
 
 import Packer from './pages/Packer'
+import PackerVehicle from './pages/Packer/Vehicle'
 import PackerCardboard from './pages/Packer/Cardboard'
 import OrderList from './pages/Admin/OrderList'
 
@@ -48,7 +49,8 @@ function App() {
             <Route path="profile" element={<DriverProfile />}></Route>
           </Route>
           <Route path="packer" element={<Packer />}>
-            <Route path=":id" element={<PackerCardboard />} />
+            <Route path="vehicle/:id" element={<PackerVehicle />} />
+            <Route path="cardboard/:id" element={<PackerCardboard />} />
           </Route>
         </Route>
       </Routes>

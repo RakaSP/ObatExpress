@@ -13,7 +13,7 @@ const AdminNavbar = ({ location }) => {
   const rebuildDB = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:3001/runRebuildDatabase'
+        'http://localhost:5000/admin/generate/db'
       )
       console.log(response)
     } catch (e) {

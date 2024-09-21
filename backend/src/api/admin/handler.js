@@ -3,11 +3,10 @@ const autoBind = require("auto-bind");
 class AdminHandler {
   constructor(adminService) {
     this._service = adminService;
-
     autoBind(this);
   }
 
-  async postGenerateDBHandler() {
+  async postGenerateDBHandler(request, h) {
     await this._service.generateDB();
     const response = h.response({
       status: "success",
@@ -17,7 +16,7 @@ class AdminHandler {
     return response;
   }
 
-  async postGenerateOrdersHandler() {
+  async postGenerateOrdersHandler(request, h) {
     await this._service.generateOrders();
     const response = h.response({
       status: "success",
@@ -27,7 +26,7 @@ class AdminHandler {
     return response;
   }
 
-  async postGenerateVehiclesHandler() {
+  async postGenerateVehiclesHandler(request, h) {
     await this._service.generateVehicles();
     const response = h.response({
       status: "success",
@@ -37,7 +36,7 @@ class AdminHandler {
     return response;
   }
 
-  async postGenerateDeliversHandler() {
+  async postGenerateDeliversHandler(request, h) {
     await this._service.generateDB();
     const response = h.response({
       status: "success",
@@ -47,7 +46,7 @@ class AdminHandler {
     return response;
   }
 
-  async getDashboardMetricsHandler() {
+  async getDashboardMetricsHandler(request, h) {
     const todayDeliveryCount = await this._service.getTodayDeliveryCount();
     const monthlyDeliveryCount = await this._service.getMonthlyDeliveryCount();
     const deliveryIssueCount = await this._service.getDeliveryIssueCount();
@@ -64,7 +63,7 @@ class AdminHandler {
     };
   }
 
-  async getDeliveryListHandler() {
+  async getDeliveryListHandler(request, h) {
     const deliveryList = await this._service.getDeliveryList();
     return {
       status: "success",
@@ -74,7 +73,7 @@ class AdminHandler {
     };
   }
 
-  async getEmployeeMetricsHandler() {
+  async getEmployeeMetricsHandler(request, h) {
     const employeeCount = await this._service.getEmployeeCount();
     const adminCount = await this._service.getAdminCount();
     const driverCount = await this._service.getDriverCount();
@@ -91,7 +90,7 @@ class AdminHandler {
     };
   }
 
-  async getEmployeeListHandler() {
+  async getEmployeeListHandler(request, h) {
     const employeeList = await this._service.getEmployeeList();
     return {
       status: "success",
@@ -136,7 +135,7 @@ class AdminHandler {
     return response;
   }
 
-  async getVehicleListHandler() {
+  async getVehicleListHandler(request, h) {
     const vehicleList = await this._service.getVehicleLists();
     return {
       message: "success",

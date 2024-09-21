@@ -13,49 +13,49 @@ const PackerNav = () => {
   }
   const navigate = useNavigate()
   const location = useLocation()
-  const handleSelectShipmentChange = (e) => {
-    const id = e.target.value
-    const path = location.pathname.substring(
-      0,
-      location.pathname.lastIndexOf('/')
-    )
-    navigate(`${path}/${id}`)
-  }
+  // const handleSelectShipmentChange = (e) => {
+  //   const id = e.target.value
+  //   const path = location.pathname.substring(
+  //     0,
+  //     location.pathname.lastIndexOf('/')
+  //   )
+  //   navigate(`${path}/${id}`)
+  // }
 
-  useEffect(() => {
-    const loadOptions = () => {
-      let idList = []
-      if (location.pathname.includes('/packer/warehouse'))
-        idList = links[0].idList
-      idSelect.innerHTML = ''
-      if (idList.length > 0) {
-        idList.forEach((item) => {
-          const option = document.createElement('option')
-          option.value = item.id
-          option.innerHTML = `Shipment #${item.id}`
-          idSelect.current.appendChild(option)
-        })
-      } else {
-        const option = document.createElement('option')
-        option.value = 'No shipments'
-        option.innerHTML = 'No shipments'
-        idSelect.current.appendChild(option)
-      }
-    }
+  // useEffect(() => {
+  //   const loadOptions = () => {
+  //     let idList = []
+  //     if (location.pathname.includes('/packer/warehouse'))
+  //       idList = links[0].idList
+  //     idSelect.innerHTML = ''
+  //     if (idList.length > 0) {
+  //       idList.forEach((item) => {
+  //         const option = document.createElement('option')
+  //         option.value = item.id
+  //         option.innerHTML = `Shipment #${item.id}`
+  //         idSelect.current.appendChild(option)
+  //       })
+  //     } else {
+  //       const option = document.createElement('option')
+  //       option.value = 'No shipments'
+  //       option.innerHTML = 'No shipments'
+  //       idSelect.current.appendChild(option)
+  //     }
+  //   }
 
-    loadOptions()
-  })
+  //   loadOptions()
+  // })
 
   const links = [
     {
       title: 'Vehicle',
-      link: '/packer/vehicle',
+      link: '/packer/vehicle/1',
       icon: faTruck,
       idList: null,
     },
     {
       title: 'Cardboard',
-      link: '/packer/1',
+      link: '/packer/cardboard/1',
       icon: faBoxesPacking,
       idList: null,
     },
@@ -83,7 +83,7 @@ const PackerNav = () => {
           </React.Fragment>
         ))}
       </nav>
-      <div className="mb-4 flex flex-col w-full px-4">
+      {/* <div className="mb-4 flex flex-col w-full px-4">
         <h4 className="block mb-2 font-poppins text-lg font-medium text-gray-900">
           Select Shipment ID:
         </h4>
@@ -92,7 +92,7 @@ const PackerNav = () => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm font-semibold font-poppins rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           onChange={handleSelectShipmentChange}
         ></select>
-      </div>
+      </div> */}
     </div>
   )
 }

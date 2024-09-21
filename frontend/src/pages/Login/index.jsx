@@ -21,7 +21,7 @@ const Login = () => {
     if (username === 'admin' && password === 'admin') navigate('/admin')
     else if (username === 'driver' && password === 'driver') navigate('/driver')
     else if (username === 'packer' && password === 'packer')
-      navigate('/packer/1')
+      navigate('/packer/vehicle/1')
     else console.log('Invalid username or password')
   }
   return (

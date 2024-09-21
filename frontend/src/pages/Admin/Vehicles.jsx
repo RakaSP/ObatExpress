@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { vehicles } from '../../constants'
 import styles from '../../styles/style'
 import '../../styles/index.scss'
-
+import { icecube } from '../../assets/EmployeePage'
 const Vehicles = () => {
   const [activeStatus, setActiveStatus] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
@@ -88,12 +88,19 @@ const Vehicles = () => {
                   </div>
                 </div> */}
               </div>
-              <div className="basis-3/5 flex items-center justify-center">
+              <div className="basis-3/5 flex items-center justify-center relative">
                 <img
                   src={vehicle.imgUrl}
                   alt={vehicle.imgUrl}
                   className="h-[100px] object-fit"
                 />
+                {vehicle.refrigerated && (
+                  <img
+                    src={icecube}
+                    alt=""
+                    className="absolute top-1/3 left-1/2 w-16 -translate-y-1/2"
+                  />
+                )}
               </div>
             </div>
           </div>

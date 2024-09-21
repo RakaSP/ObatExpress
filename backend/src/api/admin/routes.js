@@ -35,32 +35,27 @@ const routes = (adminHandler) => [
   },
   {
     method: "GET",
-    path: "admin/employee/metrics",
-    handler: (request, h) => adminHandler.getEmployeeMetricsHandler(request, h),
-  },
-  {
-    method: "GET",
-    path: "admin/employee/list",
+    path: "/admin/employee/list",
     handler: (request, h) => adminHandler.getEmployeeListHandler(request, h),
   },
   {
     method: "POST",
-    path: "admin/employee/add",
+    path: "/admin/employee/add",
     handler: (request, h) => adminHandler.postEmployeeHandler(request, h),
   },
   {
     method: "GET",
-    path: "admin/vehicle/list",
+    path: "/admin/vehicle/list",
     handler: (request, h) => adminHandler.getVehicleListHandler(request, h),
   },
   {
     method: "GET",
-    path: "admin/delivery/{DeliveryID}",
+    path: "/admin/delivery/{DeliveryID}",
     handler: (request, h) => adminHandler.getDeliveryDetailHandler(request, h),
   },
   {
     method: "GET",
-    path: "admin/order/{OrderID}",
+    path: "/admin/order/{OrderID}",
     handler: (request, h) => adminHandler.getOrderListHandler(request, h),
   },
 ];

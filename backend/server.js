@@ -6,6 +6,9 @@ const Inert = require("@hapi/inert");
 const mysql = require("mysql2/promise");
 const path = require("path");
 
+const adminApi = require("./src/api/admin");
+const AdminService = require("./src/services/AdminService");
+
 const init = async () => {
   // Create the Hapi server instance
   const server = Hapi.server({
@@ -56,6 +59,15 @@ const init = async () => {
     },
     {
       plugin: Inert,
+    },
+  ]);
+
+  await server.register([
+    {
+      plugin: adminApi,
+      options: {
+        adminService: AdminService,
+      },
     },
   ]);
 

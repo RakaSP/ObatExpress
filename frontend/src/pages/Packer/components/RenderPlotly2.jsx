@@ -26,7 +26,6 @@ const RenderPlotly = ({ container }) => {
         tickvals: Array.from({ length: ticks[0] }, (_, i) => i * 10),
         ticktext: Array.from({ length: ticks[0] }, (_, i) => i * 10),
         nticks: ticks[0],
-        // showticklabels: false,
         showgrid: false,
         zeroline: false,
         showline: false,
@@ -37,7 +36,6 @@ const RenderPlotly = ({ container }) => {
         tickvals: Array.from({ length: ticks[1] }, (_, i) => i * 10),
         ticktext: Array.from({ length: ticks[1] }, (_, i) => i * 10),
         nticks: ticks[1],
-        // showticklabels: false,
         showgrid: false,
         zeroline: false,
         showline: false,
@@ -48,7 +46,6 @@ const RenderPlotly = ({ container }) => {
         tickvals: Array.from({ length: ticks[2] }, (_, i) => i * 10),
         ticktext: Array.from({ length: ticks[2] }, (_, i) => i * 10),
         nticks: ticks[2],
-        // showticklabels: false,
         showgrid: false,
         zeroline: false,
         showline: false,
@@ -174,7 +171,6 @@ const RenderPlotly = ({ container }) => {
     }
   }
   function getArrowImg() {
-    // Create the shaft object representing the 3D block
     const shaftwidth = container.SizeY / 20
     const thickness = container.SizeZ / 30
     const shaftX = [container.SizeX * 1.15, container.SizeX * 1.3]
@@ -244,8 +240,6 @@ const RenderPlotly = ({ container }) => {
       k: [2, 2, 5, 2, 5, 5, 0, 1],
       color: 'green',
     }
-
-    console.log(shaft)
     return [shaft, arrowhead]
   }
 

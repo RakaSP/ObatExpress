@@ -5,7 +5,7 @@ import { shipments2 } from '../../constants'
 
 const Driver = () => {
   const randomIndex = Math.floor(Math.random() * shipments2.length)
-  const shipment = shipments2[randomIndex]
+  const shipment = shipments2[0]
   return (
     <div className="ml-[260px] h-full">
       <Outlet context={shipment} />

@@ -738,7 +738,6 @@ export const shipments2 = [
   },
 ]
 
-
 export const orders = [
   {
     id: 1,
@@ -949,7 +948,6 @@ export const orders = [
       id: 3,
       name: 'Apotek Keluarga',
       email: 'keluarga.apotek@gmail.com',
-
 
       phone: '+62 818 1234 5678',
       address: 'Jl. Kalimantan No.7, Yogyakarta, Indonesia',
@@ -1236,7 +1234,7 @@ export const orders = [
     },
     items: [{ id: 30, name: 'Hydrochlorothiazide', price: 42000, qty: 2 }],
   },
-];
+]
 
 export const troubles = [
   {
@@ -1422,6 +1420,7 @@ export const vehicles = [
     capacity: 5000,
     status: 'available',
     plateNumber: 'AB 123 CD',
+    refrigerated: true,
     imgUrl: truck2d,
   },
   {
@@ -1442,6 +1441,7 @@ export const vehicles = [
     capacity: 5500,
     status: 'ready',
     plateNumber: 'IJ 789 KL',
+    refrigerated: false,
     imgUrl: truck2d,
   },
   {
@@ -1462,6 +1462,7 @@ export const vehicles = [
     capacity: 5800,
     status: 'available',
     plateNumber: 'QR 345 ST',
+    refrigerated: true,
     imgUrl: truck2d,
   },
   {
@@ -1482,6 +1483,7 @@ export const vehicles = [
     capacity: 5500,
     status: 'ready',
     plateNumber: 'YZ 901 AB',
+    refrigerated: true,
     imgUrl: truck2d,
   },
   {
@@ -1502,6 +1504,7 @@ export const vehicles = [
     capacity: 5900,
     status: 'available',
     plateNumber: 'GH 567 IJ',
+    refrigerated: false,
     imgUrl: truck2d,
   },
   {
@@ -1522,6 +1525,7 @@ export const vehicles = [
     capacity: 5400,
     status: 'ready',
     plateNumber: 'OP 123 QR',
+    refrigerated: false,
     imgUrl: truck2d,
   },
   {
@@ -1542,6 +1546,7 @@ export const vehicles = [
     capacity: 5600,
     status: 'available',
     plateNumber: 'WX 789 YZ',
+    refrigerated: false,
     imgUrl: truck2d,
   },
   {
@@ -1562,6 +1567,7 @@ export const vehicles = [
     capacity: 5900,
     status: 'ready',
     plateNumber: 'EF 345 GH',
+    refrigerated: true,
     imgUrl: truck2d,
   },
   {
@@ -1582,6 +1588,7 @@ export const vehicles = [
     capacity: 6100,
     status: 'available',
     plateNumber: 'MN 901 OP',
+    refrigerated: false,
     imgUrl: truck2d,
   },
   {
@@ -1602,6 +1609,7 @@ export const vehicles = [
     capacity: 6300,
     status: 'ready',
     plateNumber: 'UV 567 WX',
+    refrigerated: false,
     imgUrl: truck2d,
   },
   {

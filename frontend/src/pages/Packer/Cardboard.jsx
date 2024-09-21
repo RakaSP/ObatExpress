@@ -1,7 +1,7 @@
 import React from 'react'
-import RenderPlotly2 from './components/RenderPlotly2'
+import RenderPlotly from './components/RenderPlotly'
 import styles from '../../styles/style'
-import { container } from '../../constants/pack'
+import { cardboard } from '../../constants/pack'
 const Cardboard = () => {
   return (
     <div className="py-[10px] px-10">
@@ -10,10 +10,10 @@ const Cardboard = () => {
       </h4>
       <div className="flex flex-row justify-around mt-8">
         <div className="mr-4">
-          <RenderPlotly2 container={container} />
+          <RenderPlotly container={cardboard} />
         </div>
         <div className="w-[360px] ml-4 flex flex-col border-2 border-[#6F6F70] rounded-lg mt-4 bg-white p-[20px] max-h-[800px] overflow-y-scroll">
-          {container.ItemList.map((item) => (
+          {cardboard.ItemList.map((item) => (
             <div
               key={(item.ID, {})}
               className="border-2 border-[#6F6F70] rounded-md w-full p-4 mb-4"

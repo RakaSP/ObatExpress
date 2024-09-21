@@ -5,6 +5,7 @@ import { truck3d, scooter3d } from '../../assets/EmployeePage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { orders } from '../../constants'
+import MapPlaceholder from './components/MapPlaceholder'
 // const randomIndex = Math.floor(Math.random() * shipments2.length) + 1
 // const shipment = shipments2[randomIndex]
 
@@ -217,9 +218,10 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="w-[60%] bg-bg_card min-h-full border-2 border-gray-200 flex items-center justify-center">
-        <p className="font-poppins text-text_primary opacity-60 text-xl font-medium">
+        <MapPlaceholder />
+        {/* <p className="font-poppins text-text_primary opacity-60 text-xl font-medium">
           Route not Found
-        </p>
+        </p> */}
       </div>
     </div>
   )
