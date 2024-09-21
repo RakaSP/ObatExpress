@@ -43,7 +43,8 @@ const Dashboard = () => {
   }
 
   const rating = (Math.random() * (5 - 4) + 4).toFixed(2)
-  const orderIndex = Math.floor(Math.random() * shipment.orders.length) + 1
+  // const orderIndex = Math.floor(Math.random() * shipment.orders.length) + 1
+  const orderIndex = 1
   return (
     <div className="h-full min-h-[100vh] w-full flex flex-row">
       <div className="p-[10px] px-10 w-[40%] h-full">
@@ -133,7 +134,9 @@ const Dashboard = () => {
                 <div className="flex flex-row mr-4 pt-2 w-[80px] justify-between relative">
                   <p className="text-text_primary text-xs opacity-60 font-semibold">
                     <span className="block">10:00</span>
-                    <span className="block mt-1 whitespace-nowrap">(4 km)</span>
+                    <span className="block mt-1 whitespace-nowrap">
+                      ({order.distance} Km)
+                    </span>
                   </p>
                   <div className="w-4 h-4 bg-highlight rounded-full flex justify-center">
                     <div className="absolute w-1 h-[calc(100%+20px)] bg-highlight z-10 bg-opacity-40"></div>
