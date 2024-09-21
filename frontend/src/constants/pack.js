@@ -9,7 +9,7 @@ export const container = {
     {
       Type: 'Item',
       ID: 0,
-      Name: 'item',
+      Name: 'Cardboard',
       SizeX: 22,
       SizeY: 31,
       SizeZ: 46,
