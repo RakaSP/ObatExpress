@@ -39,6 +39,28 @@ const Vehicle = () => {
     }, 3000)
   }
 
+  const handleSolve = () => {
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        const content = reader.result
+        const blob = new Blob([content], { type: 'application/json' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${file.name
+          .split('.')
+          .slice(0, -1)
+          .join('.')}_solved.json`
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+      }
+      reader.readAsText(file)
+    }
+  }
+
   const handleCancel = () => {
     setUploading(false)
     setUploadProgress(0)
@@ -83,6 +105,7 @@ const Vehicle = () => {
             )}
             <div className="flex space-x-4 mt-2">
               <button
+                onClick={handleSolve}
                 className={`rounded-lg py-2 text-lg font-roboto flex justify-center items-center px-6 gap-4 transition duration-200 ${
                   uploadProgress === 100
                     ? 'bg-green-600 hover:bg-green-700 text-white'
