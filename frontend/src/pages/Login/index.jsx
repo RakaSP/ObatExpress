@@ -15,6 +15,7 @@ const Login = () => {
     { username: 'admin', password: 'admin' },
     { username: 'driver', password: 'driver' },
     { username: 'packer', password: 'packer' },
+    { username: 'solver', password: 'solver' },
   ]
   const handleLogin = (event) => {
     event.preventDefault()
@@ -22,6 +23,7 @@ const Login = () => {
     else if (username === 'driver' && password === 'driver') navigate('/driver')
     else if (username === 'packer' && password === 'packer')
       navigate('/packer/vehicle/1')
+    else if (username === 'solver' && password === 'solver') navigate('/solver')
     else console.log('Invalid username or password')
   }
   return (

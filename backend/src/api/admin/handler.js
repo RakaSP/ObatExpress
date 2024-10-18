@@ -47,55 +47,65 @@ class AdminHandler {
   }
 
   async getDashboardMetricsHandler(request, h) {
-    const todayDeliveryCount = await this._service.getTodayDeliveryCount();
-    const monthlyDeliveryCount = await this._service.getMonthlyDeliveryCount();
-    const deliveryIssueCount = await this._service.getDeliveryIssueCount();
-    const totalDeliveryCount = await this._service.getTotalDeliveryCount();
+    // const todayDeliveryCount = await this._service.getTodayDeliveryCount();
+    // const monthlyDeliveryCount = await this._service.getMonthlyDeliveryCount();
+    // const deliveryIssueCount = await this._service.getDeliveryIssueCount();
+    // const totalDeliveryCount = await this._service.getTotalDeliveryCount();
+
+    // return {
+    //   status: "success",
+    //   data: {
+    //     todayDeliveryCount,
+    //     monthlyDeliveryCount,
+    //     deliveryIssueCount,
+    //     totalDeliveryCount,
+    //   },
+    // };
 
     return {
       status: "success",
       data: {
-        todayDeliveryCount,
-        monthlyDeliveryCount,
-        deliveryIssueCount,
-        totalDeliveryCount,
+        message: "Dashboard Metrics Handler",
       },
     };
   }
 
   async getDeliveryListHandler(request, h) {
-    const deliveryList = await this._service.getDeliveryList();
+    // const deliveryList = await this._service.getDeliveryList();
     return {
       status: "success",
       data: {
-        deliveryList,
+        // deliveryList,
+        message: "Delivery List Handler",
       },
     };
   }
 
   async getEmployeeMetricsHandler(request, h) {
-    const employeeCount = await this._service.getEmployeeCount();
-    const adminCount = await this._service.getAdminCount();
-    const driverCount = await this._service.getDriverCount();
-    const packerCount = await this._service.getPackerCount();
+    // const employeeCount = await this._service.getEmployeeCount();
+    // const adminCount = await this._service.getAdminCount();
+    // const driverCount = await this._service.getDriverCount();
+    // const packerCount = await this._service.getPackerCount();
 
     return {
       status: "success",
       data: {
-        employeeCount,
-        adminCount,
-        driverCount,
-        packerCount,
+        // employeeCount,
+        // adminCount,
+        // driverCount,
+        // packerCount,
+        message: "Employee Metrics Handler",
       },
     };
   }
 
   async getEmployeeListHandler(request, h) {
-    const employeeList = await this._service.getEmployeeList();
+    // const employeeList = await this._service.getEmployeeList();
     return {
       status: "success",
       data: {
-        employeeList,
+        // employeeList,
+        message: "Employee List Handler",
       },
     };
   }

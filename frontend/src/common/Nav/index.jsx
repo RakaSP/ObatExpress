@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import AdminNav from './AdminNav'
 import PackerNav from './PackerNav'
 import DriverNav from './DriverNav'
+import SolverNav from './SolverNav'
 
 const Nav = () => {
   const location = useLocation()
@@ -15,6 +16,8 @@ const Nav = () => {
       return <PackerNav />
     } else if (pathname.includes('/driver')) {
       return <DriverNav />
+    } else if (pathname.includes('/solver')) {
+      return <SolverNav />
     }
 
     return null

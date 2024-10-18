@@ -9,6 +9,12 @@ const path = require("path");
 const adminApi = require("./src/api/admin");
 const AdminService = require("./src/services/AdminService");
 
+const driverApi = require("./src/api/driver");
+const DriverService = require("./src/services/DriverService");
+
+// const adminApi = require("./src/api/admin");
+// const AdminService = require("./src/services/AdminService");
+
 const init = async () => {
   // Create the Hapi server instance
   const server = Hapi.server({

@@ -24,6 +24,8 @@ import PackerVehicle from './pages/Packer/Vehicle'
 import PackerCardboard from './pages/Packer/Cardboard'
 import OrderList from './pages/Admin/OrderList'
 
+import Solver from './pages/Solver'
+import SolverMain from './pages/Solver/Solver'
 function App() {
   return (
     <>
@@ -51,6 +53,9 @@ function App() {
           <Route path="packer" element={<Packer />}>
             <Route path="vehicle/:id" element={<PackerVehicle />} />
             <Route path="cardboard/:id" element={<PackerCardboard />} />
+          </Route>
+          <Route path="solver" element={<Solver />}>
+            <Route path="" element={<SolverMain />}></Route>
           </Route>
         </Route>
       </Routes>
