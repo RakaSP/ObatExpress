@@ -12,8 +12,8 @@ const Vehicle = () => {
     const selectedFile = event.target.files[0]
     if (selectedFile) {
       setFile(selectedFile)
-      setUploadProgress(0) // Reset progress when a new file is selected
-      handleUpload(selectedFile) // Start upload immediately after selection
+      setUploadProgress(0)
+      handleUpload(selectedFile)
     }
   }
 
